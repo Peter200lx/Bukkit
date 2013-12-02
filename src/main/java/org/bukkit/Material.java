@@ -29,7 +29,11 @@ import org.bukkit.material.FlowerPot;
 import org.bukkit.material.Furnace;
 import org.bukkit.material.Gate;
 import org.bukkit.material.Ladder;
+import org.bukkit.material.Leaves;
+import org.bukkit.material.Leaves2;
 import org.bukkit.material.Lever;
+import org.bukkit.material.Log;
+import org.bukkit.material.Log2;
 import org.bukkit.material.LongGrass;
 import org.bukkit.material.MaterialData;
 import org.bukkit.material.MonsterEggs;
@@ -91,8 +95,8 @@ public enum Material {
     GOLD_ORE(14),
     IRON_ORE(15),
     COAL_ORE(16),
-    LOG(17, Tree.class),
-    LEAVES(18, Tree.class),
+    LOG(17, Log.class),
+    LEAVES(18, Leaves.class),
     SPONGE(19),
     GLASS(20),
     LAPIS_ORE(21),
@@ -237,8 +241,8 @@ public enum Material {
     DROPPER(158, Dispenser.class),
     STAINED_CLAY(159, Wool.class),
     STAINED_GLASS_PANE(160, Wool.class),
-    LEAVES_2(161),
-    LOG_2(162),
+    LEAVES_2(161, Leaves2.class),
+    LOG_2(162, Log2.class),
     ACACIA_STAIRS(163, Stairs.class),
     DARK_OAK_STAIRS(164, Stairs.class),
     HAY_BLOCK(170, Rotateable.class),

@@ -5,11 +5,11 @@ import org.bukkit.TreeSpecies;
 import org.bukkit.block.BlockFace;
 
 /**
- * Represents the different types of Trees.
+ * Represents the different types of Trees. This class supports all 6 TreeSpecies.
  */
-public class Tree extends Rotateable {
+public class Tree extends MaterialData {
     public Tree() {
-        super(Material.LOG);
+        super(Material.SAPLING);
     }
 
     public Tree(TreeSpecies species) {
@@ -20,7 +20,6 @@ public class Tree extends Rotateable {
     public Tree(TreeSpecies species, BlockFace dir) {
         this();
         setSpecies(species);
-        setFacingDirection(dir);
     }
 
     /**
@@ -60,7 +59,7 @@ public class Tree extends Rotateable {
      * @return TreeSpecies of this tree
      */
     public TreeSpecies getSpecies() {
-        return TreeSpecies.getByData((byte) (getData() & 0x3));
+        return TreeSpecies.getByData((byte) (getData() & 0x7));
     }
 
     /**
@@ -72,31 +71,9 @@ public class Tree extends Rotateable {
         setData((byte) ((getData() & 0xC) | species.getData()));
     }
 
-    /**
-     * Get direction of the log
-     *
-     * @return BlockFace.TOP for upright (default), BlockFace.NORTH (east-west), BlockFace.WEST (north-sout), BlockFace.SELF (directionless)
-     * @deprecated use getFacing() from {@link Directional} instead
-     */
-    @Deprecated
-    public BlockFace getDirection() {
-        return getFacing();
-    }
-
-    /**
-     * Set direction of the log
-     *
-     * @param dir - direction of end of log (BlockFace.SELF for no direction)
-     * @deprecated use setFacingDirection() from {@link Directional} instead
-     */
-    @Deprecated
-    public void setDirection(BlockFace dir) {
-        setFacingDirection(dir);
-    }
-
     @Override
     public String toString() {
-        return getSpecies() + " " + getFacing() + " " + super.toString();
+        return getSpecies() + " " + super.toString();
     }
 
     @Override
