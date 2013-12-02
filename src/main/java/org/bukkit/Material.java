@@ -36,6 +36,7 @@ import org.bukkit.material.PoweredRail;
 import org.bukkit.material.PressurePlate;
 import org.bukkit.material.Pumpkin;
 import org.bukkit.material.Rails;
+import org.bukkit.material.RawFish;
 import org.bukkit.material.RedstoneTorch;
 import org.bukkit.material.RedstoneWire;
 import org.bukkit.material.Sand;
@@ -330,7 +331,7 @@ public enum Material {
     FISHING_ROD(346, 1, 64),
     WATCH(347),
     GLOWSTONE_DUST(348),
-    RAW_FISH(349),
+    RAW_FISH(349, RawFish.class),
     COOKED_FISH(350),
     INK_SACK(351, Dye.class),
     BONE(352),
