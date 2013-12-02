@@ -5,21 +5,22 @@ import org.bukkit.TreeSpecies;
 import org.bukkit.block.BlockFace;
 
 /**
- * Represents the different types of Trees. This class supports all 6 TreeSpecies.
+ * Represents the different types of Logs. This class only supports GENERIC/REDWOOD/BIRCH/JUNGLE Species.
  */
-public class Tree extends MaterialData {
-    public Tree() {
-        super(Material.SAPLING);
+public class Log extends Rotateable {
+    public Log() {
+        super(Material.LOG);
     }
 
-    public Tree(TreeSpecies species) {
+    public Log(TreeSpecies species) {
         this();
         setSpecies(species);
     }
 
-    public Tree(TreeSpecies species, BlockFace dir) {
+    public Log(TreeSpecies species, BlockFace dir) {
         this();
         setSpecies(species);
+        setFacingDirection(dir);
     }
 
     /**
@@ -27,11 +28,11 @@ public class Tree extends MaterialData {
      * @deprecated Magic value
      */
     @Deprecated
-    public Tree(final int type) {
+    public Log(final int type) {
         super(type);
     }
 
-    public Tree(final Material type) {
+    public Log(final Material type) {
         super(type);
     }
 
@@ -40,7 +41,7 @@ public class Tree extends MaterialData {
      * @deprecated Magic value
      */
     @Deprecated
-    public Tree(final int type, final byte data) {
+    public Log(final int type, final byte data) {
         super(type, data);
     }
 
@@ -49,7 +50,7 @@ public class Tree extends MaterialData {
      * @deprecated Magic value
      */
     @Deprecated
-    public Tree(final Material type, final byte data) {
+    public Log(final Material type, final byte data) {
         super(type, data);
     }
 
@@ -59,7 +60,7 @@ public class Tree extends MaterialData {
      * @return TreeSpecies of this tree
      */
     public TreeSpecies getSpecies() {
-        switch(getData() & 0x7) {
+        switch(getData() & 0x3) {
         case 0:
             return TreeSpecies.GENERIC;
         case 1:
@@ -68,10 +69,6 @@ public class Tree extends MaterialData {
             return TreeSpecies.BIRCH;
         case 3:
             return TreeSpecies.JUNGLE;
-        case 4:
-            return TreeSpecies.ACACIA;
-        case 5:
-            return TreeSpecies.DARK_OAK;
         default:
             return null;
         }
@@ -96,24 +93,40 @@ public class Tree extends MaterialData {
         case JUNGLE:
             setData((byte) (getData() & 0x8 | 3));
             return;
-        case ACACIA:
-            setData((byte) (getData() & 0x8 | 4));
-            return;
-        case DARK_OAK:
-            setData((byte) (getData() & 0x8 | 5));
-            return;
         default:
             return;
         }
     }
 
-    @Override
-    public String toString() {
-        return getSpecies() + " " + super.toString();
+    /**
+     * Get direction of the log
+     *
+     * @return BlockFace.TOP for upright (default), BlockFace.NORTH (east-west), BlockFace.WEST (north-south), BlockFace.SELF (directionless)
+     * @deprecated use getFacing() from {@link Directional} instead
+     */
+    @Deprecated
+    public BlockFace getDirection() {
+        return getFacing();
+    }
+
+    /**
+     * Set direction of the log
+     *
+     * @param dir - direction of end of log (BlockFace.SELF for no direction)
+     * @deprecated use setFacingDirection() from {@link Directional} instead
+     */
+    @Deprecated
+    public void setDirection(BlockFace dir) {
+        setFacingDirection(dir);
     }
 
     @Override
-    public Tree clone() {
-        return (Tree) super.clone();
+    public String toString() {
+        return getSpecies() + " " + getFacing() + " " + super.toString();
+    }
+
+    @Override
+    public Log clone() {
+        return (Log) super.clone();
     }
 }

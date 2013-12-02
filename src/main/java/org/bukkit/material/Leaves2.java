@@ -4,14 +4,14 @@ import org.bukkit.Material;
 import org.bukkit.TreeSpecies;
 
 /**
- * Represents the different types of leaves. This class only supports GENERIC/REDWOOD/BIRCH/JUNGLE Species.
+ * Represents the different types of leaves. This class only supports ACACIA/DARK_OAK Species.
  */
-public class Leaves extends MaterialData {
-    public Leaves() {
-        super(Material.LEAVES);
+public class Leaves2 extends Leaves {
+    public Leaves2() {
+        super(Material.LEAVES_2);
     }
 
-    public Leaves(TreeSpecies species) {
+    public Leaves2(TreeSpecies species) {
         this();
         setSpecies(species);
     }
@@ -21,11 +21,11 @@ public class Leaves extends MaterialData {
      * @deprecated Magic value
      */
     @Deprecated
-    public Leaves(final int type) {
+    public Leaves2(final int type) {
         super(type);
     }
 
-    public Leaves(final Material type) {
+    public Leaves2(final Material type) {
         super(type);
     }
 
@@ -34,7 +34,7 @@ public class Leaves extends MaterialData {
      * @deprecated Magic value
      */
     @Deprecated
-    public Leaves(final int type, final byte data) {
+    public Leaves2(final int type, final byte data) {
         super(type, data);
     }
 
@@ -43,7 +43,7 @@ public class Leaves extends MaterialData {
      * @deprecated Magic value
      */
     @Deprecated
-    public Leaves(final Material type, final byte data) {
+    public Leaves2(final Material type, final byte data) {
         super(type, data);
     }
 
@@ -52,16 +52,13 @@ public class Leaves extends MaterialData {
      *
      * @return TreeSpecies of this leaf
      */
+    @Override
     public TreeSpecies getSpecies() {
         switch(getData() & 0x3) {
         case 0:
-            return TreeSpecies.GENERIC;
+            return TreeSpecies.ACACIA;
         case 1:
-            return TreeSpecies.REDWOOD;
-        case 2:
-            return TreeSpecies.BIRCH;
-        case 3:
-            return TreeSpecies.JUNGLE;
+            return TreeSpecies.DARK_OAK;
         default:
             return null;
         }
@@ -72,19 +69,14 @@ public class Leaves extends MaterialData {
      *
      * @param species New species of this leaf
      */
+    @Override
     public void setSpecies(TreeSpecies species) {
         switch(species) {
-        case GENERIC:
+        case ACACIA:
             setData((byte) (getData() & 0xC | 0));
             return;
-        case REDWOOD:
+        case DARK_OAK:
             setData((byte) (getData() & 0xC | 1));
-            return;
-        case BIRCH:
-            setData((byte) (getData() & 0xC | 2));
-            return;
-        case JUNGLE:
-            setData((byte) (getData() & 0xC | 3));
             return;
         default:
             return;
@@ -97,7 +89,7 @@ public class Leaves extends MaterialData {
     }
 
     @Override
-    public Leaves clone() {
-        return (Leaves) super.clone();
+    public Leaves2 clone() {
+        return (Leaves2) super.clone();
     }
 }
