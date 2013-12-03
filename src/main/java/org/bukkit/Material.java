@@ -13,6 +13,7 @@ import org.bukkit.material.Chest;
 import org.bukkit.material.Coal;
 import org.bukkit.material.CocoaPlant;
 import org.bukkit.material.Command;
+import org.bukkit.material.CookedFish;
 import org.bukkit.material.Crops;
 import org.bukkit.material.DetectorRail;
 import org.bukkit.material.Diode;
@@ -333,7 +334,7 @@ public enum Material {
     WATCH(347),
     GLOWSTONE_DUST(348),
     RAW_FISH(349, RawFish.class),
-    COOKED_FISH(350),
+    COOKED_FISH(350, CookedFish.class),
     INK_SACK(351, Dye.class),
     BONE(352),
     SUGAR(353),
