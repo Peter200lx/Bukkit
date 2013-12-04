@@ -60,7 +60,18 @@ public class Tree extends Rotateable {
      * @return TreeSpecies of this tree
      */
     public TreeSpecies getSpecies() {
-        return TreeSpecies.getByData((byte) (getData() & 0x3));
+        switch(getData() & 0x3) {
+        case 0:
+            return TreeSpecies.GENERIC;
+        case 1:
+            return TreeSpecies.REDWOOD;
+        case 2:
+            return TreeSpecies.BIRCH;
+        case 3:
+            return TreeSpecies.JUNGLE;
+        default:
+            return null;
+        }
     }
 
     /**
@@ -69,7 +80,22 @@ public class Tree extends Rotateable {
      * @param species New species of this tree
      */
     public void setSpecies(TreeSpecies species) {
-        setData((byte) ((getData() & 0xC) | species.getData()));
+        switch(species) {
+        case GENERIC:
+            setData((byte) (getData() & 0xC | 0));
+            return;
+        case REDWOOD:
+            setData((byte) (getData() & 0xC | 1));
+            return;
+        case BIRCH:
+            setData((byte) (getData() & 0xC | 2));
+            return;
+        case JUNGLE:
+            setData((byte) (getData() & 0xC | 3));
+            return;
+        default:
+            return;
+        }
     }
 
     /**

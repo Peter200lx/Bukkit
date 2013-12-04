@@ -56,7 +56,22 @@ public class WoodenStep extends MaterialData {
      * @return TreeSpecies of this tree
      */
     public TreeSpecies getSpecies() {
-        return TreeSpecies.getByData((byte) (getData() & 0x3));
+        switch(getData() & 0x7) {
+        case 0:
+            return TreeSpecies.GENERIC;
+        case 1:
+            return TreeSpecies.REDWOOD;
+        case 2:
+            return TreeSpecies.BIRCH;
+        case 3:
+            return TreeSpecies.JUNGLE;
+        case 4:
+            return TreeSpecies.ACACIA;
+        case 5:
+            return TreeSpecies.DARK_OAK;
+        default:
+            return null;
+        }
     }
 
     /**
@@ -65,7 +80,28 @@ public class WoodenStep extends MaterialData {
      * @param species New species of this tree
      */
     public void setSpecies(TreeSpecies species) {
-        setData((byte) ((getData() & 0xC) | species.getData()));
+        switch(species) {
+        case GENERIC:
+            setData((byte) (getData() & 0x8 | 0));
+            return;
+        case REDWOOD:
+            setData((byte) (getData() & 0x8 | 1));
+            return;
+        case BIRCH:
+            setData((byte) (getData() & 0x8 | 2));
+            return;
+        case JUNGLE:
+            setData((byte) (getData() & 0x8 | 3));
+            return;
+        case ACACIA:
+            setData((byte) (getData() & 0x8 | 4));
+            return;
+        case DARK_OAK:
+            setData((byte) (getData() & 0x8 | 5));
+            return;
+        default:
+            return;
+        }
     }
 
     /**
